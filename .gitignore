@@ -135,3 +135,10 @@ venv.bak/
 # Model files (optional - uncomment if you want to exclude large model files)
 # Object_Detection_v2_inferencing/src/tflite-model/*.h
 # Object_Detection_v2_inferencing/src/tflite-model/*.cpp 
+
+# Local AI-assistant scaffolding (not for the repo)
+CLAUDE.md
+.claude/
+
+# Generated dependency catalog (via /packages skill); kept local, not pushed
+docs/PACKAGES.md
