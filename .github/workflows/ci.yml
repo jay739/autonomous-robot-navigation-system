@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  # The Edge Impulse SDK in Object_Detection_v2_inferencing targets the 2.x
+  # ESP32 core (ESP-IDF 4.4); the 3.x core changes the camera and IDF APIs.
+  ESP32_CORE: esp32:esp32@2.0.17
+
+jobs:
+  compile:
+    name: Compile ${{ matrix.sketch }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - sketch: ESP32_CAM_Object_Detection
+            fqbn: esp32:esp32:esp32cam
+          - sketch: ESP32_WROVER_Robot_Controller
+            fqbn: esp32:esp32:esp32wrover
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-arduino-cli@v2
+      - name: Install the ESP32 core and libraries
+        run: |
+          arduino-cli core update-index --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli core install "$ESP32_CORE" --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli lib install ArduinoJson
+      - name: Stage the sketch with the example config
+        run: |
+          mkdir -p "build/${{ matrix.sketch }}"
+          cp "${{ matrix.sketch }}.ino" "build/${{ matrix.sketch }}/"
+          cp config.example.h "build/${{ matrix.sketch }}/config.h"
+      - name: Compile
+        run: |
+          arduino-cli compile --fqbn "${{ matrix.fqbn }}" \
+            --library ./Object_Detection_v2_inferencing \
+            --warnings default \
+            "build/${{ matrix.sketch }}"
