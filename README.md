@@ -1,5 +1,9 @@
 # Autonomous Robot Navigation System
 
+<p align="center">
+  <img src="docs/logo.svg" alt="autonomous-robot-navigation-system logo" width="128" />
+</p>
+
 An ESP32-based autonomous robot navigation system that uses computer vision to detect Aruco markers and yellow objects, calculates distance and angle to targets, and controls a four-wheel robot for precise navigation.
 
 ## System Overview

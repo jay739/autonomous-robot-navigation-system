@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect x="0" y="0" width="512" height="512" rx="123" ry="123" fill="#0B0D10"/>
+  <g id="icon">
+    <!-- ArUco-style target marker -->
+    <rect x="262" y="90" width="160" height="160" rx="16" fill="#E0A458"/>
+    <g fill="#0B0D10">
+      <rect x="288" y="116" width="36" height="36" rx="4"/>
+      <rect x="360" y="116" width="36" height="36" rx="4"/>
+      <rect x="288" y="188" width="36" height="36" rx="4"/>
+      <rect x="324" y="188" width="36" height="36" rx="4"/>
+    </g>
+    <rect x="324" y="152" width="36" height="36" rx="4" fill="#F2F0EA"/>
+    <!-- the robot heading for it -->
+    <polygon points="0,-92 64,72 0,36 -64,72" transform="translate(166 346) rotate(45)" fill="#E0A458" stroke="#E0A458" stroke-width="10" stroke-linejoin="round"/>
+  </g>
+</svg>
